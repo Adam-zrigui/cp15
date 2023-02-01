@@ -33,7 +33,6 @@ CREATE TABLE coaches (
   specialty TEXT NOT NULL
 );
 
-
 CREATE TABLE session_coaches (
   session_id INTEGER,
   coach_id INTEGER,
