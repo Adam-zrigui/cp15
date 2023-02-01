@@ -1,0 +1,52 @@
+CREATE TABLE gymnasiums (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  address TEXT NOT NULL,
+  phone TEXT NOT NULL
+);
+
+CREATE TABLE members (
+  id INTEGER PRIMARY KEY,
+  last_name TEXT NOT NULL,
+  first_name TEXT NOT NULL,
+  address TEXT NOT NULL,
+  dob TEXT NOT NULL,
+  gender CHAR(10) NOT NULL,
+  gymnasium_id INTEGER,
+  FOREIGN KEY (gymnasium_id) REFERENCES gymnasiums(id)
+);
+
+CREATE TABLE sessions (
+  id INTEGER PRIMARY KEY,
+  type TEXT NOT NULL,
+  schedule TEXT NOT NULL,
+  gymnasium_id INTEGER,
+  FOREIGN KEY (gymnasium_id) REFERENCES gymnasiums(id)
+);
+
+
+CREATE TABLE coaches (
+  id INTEGER PRIMARY KEY,
+  last_name TEXT NOT NULL,
+  first_name TEXT NOT NULL,
+  age INTEGER NOT NULL,
+  specialty TEXT NOT NULL
+);
+
+
+CREATE TABLE session_coaches (
+  session_id INTEGER,
+  coach_id INTEGER,
+  PRIMARY KEY (session_id, coach_id),
+  FOREIGN KEY (session_id) REFERENCES sessions(id),
+  FOREIGN KEY (coach_id) REFERENCES coaches(id)
+);
+
+
+CREATE TABLE member_sessions (
+  member_id INTEGER,
+  session_id INTEGER,
+  PRIMARY KEY (member_id, session_id),
+  FOREIGN KEY (member_id) REFERENCES members(id),
+  FOREIGN KEY (session_id) REFERENCES sessions(id)
+);
