@@ -42,7 +42,6 @@ CREATE TABLE session_coaches (
   FOREIGN KEY (coach_id) REFERENCES coaches(id)
 );
 
-
 CREATE TABLE member_sessions (
   member_id INTEGER,
   session_id INTEGER,
